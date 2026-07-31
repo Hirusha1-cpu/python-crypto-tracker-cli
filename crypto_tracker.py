@@ -1,6 +1,7 @@
 import asyncio
 import aiohttp
 import json
+import os;
 import time
 from datetime import datetime
 from typing import Dict, List, Optional
@@ -42,6 +43,7 @@ class CryptoPriceTracker:
     
     def __init__(self):
         self.base_url = "https://api.coingecko.com/api/v3"
+        self.api_key = os.getenv('COINGECKO_API_KEY')
         self.session = None
         self.cache = {}
         self.cache_duration = 60  # Cache duration in seconds
@@ -72,10 +74,14 @@ class CryptoPriceTracker:
                 'include_24hr_change': 'true',
                 'include_last_updated_at': 'true'
             }
-            
+            headers = {}
+            if self.api_key:
+                headers['x-cg-demo-api-key'] = self.api_key
+
             async with self.session.get(
                 f"{self.base_url}/simple/price",
-                params=params
+                params=params,
+                headers=headers
             ) as response:
                 if response.status == 200:
                     data = await response.json()
