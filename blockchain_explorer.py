@@ -15,11 +15,12 @@ class BlockchainExplorer:
         self.api_key = os.getenv('ETHERSCAN_API_KEY')
         if not self.api_key:
             raise ValueError("ETHERSCAN_API_KEY not found in environment variables")
-        self.base_url = "https://api.etherscan.io/api"
+        self.base_url = "https://api.etherscan.io/v2/api"
     
     def get_balance(self, address: str) -> Dict:
         """Get ETH balance for a wallet address"""
         params = {
+            'chainid': 11155111,
             'module': 'account',
             'action': 'balance',
             'address': address,
@@ -45,6 +46,7 @@ class BlockchainExplorer:
     def get_transactions(self, address: str, page: int = 1, offset: int = 10) -> Dict:
         """Get transaction history for a wallet address"""
         params = {
+            'chainid': 11155111,
             'module': 'account',
             'action': 'txlist',
             'address': address,
@@ -84,6 +86,7 @@ class BlockchainExplorer:
     def get_gas_price(self) -> Dict:
         """Get current gas price information"""
         params = {
+            'chainid': 1,
             'module': 'gastracker',
             'action': 'gasoracle',
             'apikey': self.api_key
