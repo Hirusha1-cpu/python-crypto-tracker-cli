@@ -69,7 +69,7 @@ class BlockchainExplorer:
                     'from': tx['from'],
                     'to': tx['to'],
                     'value': float(tx['value']) / 10**18,
-                    'gas_price': float(tx['gasPrice']) / 10**9,  # Gwei
+                    'gas_price': float(tx['gasPrice']) / 10**9,  # Gwei.
                     'gas_used': int(tx['gasUsed']),
                     'timestamp': datetime.fromtimestamp(int(tx['timeStamp'])).strftime('%Y-%m-%d %H:%M:%S'),
                     'status': 'Success' if tx['txreceipt_status'] == '1' else 'Failed'
