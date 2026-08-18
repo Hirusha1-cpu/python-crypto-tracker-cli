@@ -38,7 +38,7 @@ class BlockchainExplorer:
                 'address': address,
                 'balance_wei': balance_wei,
                 'balance_eth': balance_eth,
-                'balance_usd': None  # Will be filled if we add price feed
+                'balance_usd': None  # Will be filled if we add price feed.
             }
         else:
             raise Exception(f"API Error: {data.get('message', 'Unknown error')}")
