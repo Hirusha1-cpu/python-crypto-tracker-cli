@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Optional, Dict, List
 from dotenv import load_dotenv
 
-# Load environment variables.
+# Load environment variables
 load_dotenv()
 
 class BlockchainExplorer:
